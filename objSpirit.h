@@ -1,5 +1,5 @@
-#ifndef _DEGALOBJLOADER_
-#define _DEGALOBJLOADER_
+#ifndef _OBJSPIRIT_
+#define _OBJSPIRIT_
 
 #include <iostream>
 #include <fstream>
