@@ -279,7 +279,7 @@ namespace objSpirit{
 
   bool objLoader::parse_face(objLoader::faceDesc& face) {
     face = {{ {{ 0, 0, 0 }}, {{ 0, 0, 0 }}, {{ 0, 0, 0 }} }};
-    auto f = [&face](int idx1, int idx2){ return [&](auto& ctx){face[idx1][idx2] = _attr(ctx);};};
+    auto f = [&face](int idx1, int idx2){ return [=, &face](auto& ctx){face[idx1][idx2] = _attr(ctx);};};
     auto success = phrase_parse(_parsedLine.begin(), _parsedLine.end(),
      (
        "f " >> int_[f(0,0)] >> '/'  >> int_[f(0,1)]  >> '/' >> int_[f(0,2)] >>
@@ -306,7 +306,7 @@ namespace objSpirit{
     
     std::array<std::array<int64_t, 3>, 4> quad = {{ {{ 0, 0, 0 }}, {{ 0, 0, 0 }} , {{ 0, 0, 0 }} , {{ 0, 0, 0 }} }};
     
-    auto f = [&quad](int idx1, int idx2){ return [&](auto& ctx){quad[idx1][idx2] = _attr(ctx);};};
+    auto f = [&quad](int idx1, int idx2){ return [=, &quad](auto& ctx){quad[idx1][idx2] = _attr(ctx);};};
     
     auto success = phrase_parse(_parsedLine.begin(), _parsedLine.end(),
      (
