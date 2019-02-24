@@ -5,7 +5,7 @@
 Spirit X3 Documentation [http://ciere.com/cppnow15/x3_docs/](http://ciere.com/cppnow15/x3_docs/ "Spirit X3 Documentation")
 
 ## Features
-`objSpirit` supports some additional primitives and ight descriptors for easy definition of small scenes. Syntax:
+`objSpirit` supports some additional primitives and light descriptors for easy definition of small scenes. Syntax:
 ```
 sphere vertexIdx/radius
 plane vertexIdx/normalIdx
