@@ -33,7 +33,7 @@ auto& vecToArr3(const std::vector<float>& vec3, std::array<float, 3>& arr3)
 
 auto& trimString(std::string &str)
 {
-    auto predicate = [](auto& c){
+    auto predicate = [](auto& c) {
         if(c != ' ' && c != '\"') return true;
         return false;
     };
@@ -300,13 +300,13 @@ size_t objLoader::addPlane(objLoader::Plane& plane, size_t matIdx, size_t groupI
     return planeIdx;
 }
 
-size_t objLoader::addPointLight(PointLight& p)
+size_t objLoader::addPointLight(const PointLight& p)
 {
     m_data.pointLights.push_back(p);
     return m_data.pointLights.size() - 1;
 }
 
-size_t objLoader::addDirLight(DirectionalLight& d)
+size_t objLoader::addDirLight(const DirectionalLight& d)
 {
     m_data.directionalLights.push_back(d);
     return m_data.directionalLights.size() - 1;
@@ -380,8 +380,9 @@ bool objLoader::parse_sphere(objLoader::Sphere& sphere)
     ),
     space);
 
-    if (success)
+    if (success) {
         convertIndices(sphere);
+    }
 
     return success;
 }
@@ -396,8 +397,9 @@ bool objLoader::parse_plane(objLoader::Plane& plane)
     ),
     space);
 
-    if(success)
+    if(success) {
         convertIndices(plane);
+    }
 
     return success;
 }
@@ -531,17 +533,17 @@ void objLoader::convertIndices(objLoader::Plane& plane)
 
 void objLoader::checkForErrors()
 {
-    for (auto it : m_data.materials){
-        if (!it.loaded && !it.desc.name.empty()){
+    for (auto it : m_data.materials) {
+        if (!it.loaded && !it.desc.name.empty()) {
             std::cerr << "ERROR: Material \"" << it.desc.name << "\" is not found in \"" << m_data.mtllib << "\"!" << std::endl;
         }
     }
 }
 
-void objLoader::checkForWarnings(const Warnings flags)
+void objLoader::checkForWarnings(Warnings flags)
 {
-    if (flags & Warnings::Unused_Material || flags == Warnings::All){
-        for (auto it : m_data.materials){
+    if (flags & Warnings::Unused_Material || flags == Warnings::All) {
+        for (auto it : m_data.materials) {
             if (it.faces.empty() && it.spheres.empty() && it.planes.empty()){
                 std::cerr << "Warning: Material \"" << it.desc.name << "\" is not used!" << std::endl;
             }

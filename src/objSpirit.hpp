@@ -171,8 +171,8 @@ private:
     size_t addFace(FaceDesc&, size_t, size_t);
     size_t addSphere(Sphere&, size_t, size_t);
     size_t addPlane(Plane&, size_t, size_t);
-    size_t addPointLight(PointLight&);
-    size_t addDirLight(DirectionalLight&);
+    size_t addPointLight(const PointLight&);
+    size_t addDirLight(const DirectionalLight&);
     size_t addGroup(const std::string&);
     size_t addMaterial(const std::string&);
 
@@ -182,7 +182,7 @@ private:
 
     void checkForErrors();
 
-    void checkForWarnings(const Warnings flags);
+    void checkForWarnings(Warnings flags);
 
     void clearData();
 
