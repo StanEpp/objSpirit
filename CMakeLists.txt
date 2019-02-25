@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(objSpirit VERSION 0.5)
 
+find_package(Boost REQUIRED)
+
 include(GNUInstallDirs)
 
 add_library(objSpirit SHARED
@@ -26,4 +28,3 @@ install(TARGETS objSpirit
 
 install(FILES ${CMAKE_BINARY_DIR}/objSpirit.pc
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
-
